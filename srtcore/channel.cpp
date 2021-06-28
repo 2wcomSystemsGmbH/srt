@@ -196,6 +196,8 @@ void srt::CChannel::createSocket(int family)
         }
 #endif // ENABLE_LOGGING
     }
+    long reuseaddress = 1;
+    ::setsockopt(m_iSocket, SOL_SOCKET, SO_REUSEADDR, (char *)&reuseaddress, sizeof(reuseaddress));
 }
 
 void srt::CChannel::open(const sockaddr_any& addr)
